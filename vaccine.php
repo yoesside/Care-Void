@@ -2,8 +2,10 @@
   include 'function.php';
   include 'connection.php';
   session_start();
+
+  error_reporting(E_ALL ^ E_NOTICE);
   $name = $_SESSION['fullname'];
-  $centre= $_POST['centre'];
+  $centre= $_POST['centre'];  
 
 ?>
 <!DOCTYPE html>
@@ -55,7 +57,7 @@
                   <div class="header-info">
                      <div class="info-inner">
                         <span class="icontop"><i class="fa fa-user"></i></span>
-                        <span class="iconcont"><a href="index.php"><?php echo $name; ?></a></span> 
+                        <span class="iconcont"><a href="index.php"><?php echo $name; echo $bn;?></a></span> 
                      </div>
                      
                      <div class="info-inner">
@@ -105,7 +107,7 @@
                               displayBatch($centre);?>
                           </tr>
                         </table>
-                        <a href="index.php" class="btn btn-md btn-danger"><i class="fa fa-angle-left "></i> Back</a>
+                        <a href="index.php#service" class="btn btn-md btn-danger"><i class="fa fa-angle-left "></i> Back</a>
                      </div>
                   </div>
                </div>

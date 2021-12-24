@@ -1,3 +1,10 @@
+<?php 
+  include 'function.php';
+  session_start();
+  error_reporting(E_ALL ^ E_NOTICE);
+  $cname = $_SESSION['centreName'];
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
    <!-- Basic -->
@@ -32,9 +39,9 @@
    </head>
    <body class="clinic_version">
       <!-- LOADER -->
-      <div id="preloader">
+      <!-- <div id="preloader">
          <img class="preloader" src="images/loaders/heart-loading2.gif" alt="">
-      </div>
+      </div> -->
       <!-- END LOADER -->
      <header>
     <div class="header-top wow fadeIn">
@@ -46,7 +53,7 @@
        <div class="header-info">
          <div class="info-inner">
            <span class="icontop"><i class="fa fa-user"></i></span>
-           <span class="iconcont"><a href="index2.php">Sanglah Hospital</a></span> 
+           <span class="iconcont"><a href="index2.php"><?php echo $cname; ?></a></span> 
         </div>
 
         <div class="info-inner">
@@ -82,50 +89,15 @@
                      <div class="form">
                         <table class="table mt-2">
                           <tr>
-                             <th scope="col">Vaccination ID</th>
-                             <th scope="col">Vaccine Name</th>                             
-                             <th scope="col">Patient Full Name</th>                             
-                             <th scope="col">ICP Pasport</th>
-                             <th scope="col">Date Requested</th>
-                             <th scope="col">Action</th>                             
-                          </tr>
-
-                          <tr>
-                             <td scope="col">1</td>
-                             <td scope="col">Pfizer</td>                             
-                             <td scope="col">Yoga Era Subakti</td>                             
-                             <td scope="col">280051</td> 
-                             <td scope="col">27-12-2021</td>                             
-                             <td scope="col">
-                              <a href="#" class="btn btn-success">Accept</a>
-                              <a href="#" class="btn btn-danger">Reject</a>
-                            </td>
-                          </tr> 
-
-                          <tr>
-                             <td scope="col">2</td>
-                             <td scope="col">Moderna</td>                             
-                             <td scope="col">Makoto Shinkai</td>                             
-                             <td scope="col">510073</td> 
-                             <td scope="col">19-12-2021</td>                             
-                             <td scope="col">
-                              <a href="#" class="btn btn-success">Accept</a>
-                              <a href="#" class="btn btn-danger">Reject</a>
-                            </td>
-                          </tr> 
-
-                          <tr>
-                             <td scope="col">2</td>
-                             <td scope="col">Sinovac</td>                             
-                             <td scope="col">Gol D. Roger</td>                             
-                             <td scope="col">460027</td> 
-                             <td scope="col">11-12-2021</td>                             
-                             <td scope="col">
-                              <a href="#" class="btn btn-success">Accept</a>
-                              <a href="#" class="btn btn-danger">Reject</a>
-                            </td>
-                          </tr> 
-                        </table>
+                             <th scope="col">Vaccination ID</th>                             
+                             <th scope="col">Batch No</th>    
+                             <th scope="col">Patient Name</th>    
+                             <th scope="col">Appointment Date</th>                             
+                             <th scope="col">Remarks</th>                             
+                             <th scope="col">Status</th>                         
+                          </tr>                                
+                             <?php displayVaccination($cname); ?>                          
+                        </table>                      
                      </div>
                   </div>
                </div>

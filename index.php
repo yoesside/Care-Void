@@ -156,7 +156,7 @@
                              <th scope="col">Health Care</th>
                              <th scope="col">Address</th>                       
                              <th scope="col">Action</th>
-                          </tr>
+                          </tr>                          
                           <?php                              
                               $sql = "SELECT * FROM administrator";
                               $display = mysqli_query($connect,$sql);
@@ -168,7 +168,7 @@
                                 echo "<td scope='col'>".$row['address']."</td>";        
                                 echo "<td scope='col'>
                                 <form action='vaccine.php' method='post'>
-                                <input type='hidden' name='centre' value=".$row['centreName'].">
+                                <input type='hidden' name='centre' value=".$row['centreName'].">                                
                                 <button class='btn btn-success' type='submit' name='select'>Select</button>
                                 </form>
                                 </td>";

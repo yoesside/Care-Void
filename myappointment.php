@@ -1,9 +1,16 @@
 <?php 
-  
+  include 'function.php';
+  include 'connection.php';
   session_start();
 
-  $name = $_SESSION['fullname'];  
+  $name = $_SESSION['fullname'];   
+/*  $getVname = $_POST['vaccineName'];
+  $getHC = $_POST['healthCare'];
+  $getICP = $_POST['ICP'];  
+  $getProposed = $_POST['proposed'];  */
+
  ?>
+
 <!DOCTYPE html>
 <html lang="en">
    <!-- Basic -->
@@ -38,9 +45,9 @@
    </head>
    <body class="clinic_version">
       <!-- LOADER -->
-      <div id="preloader">
+      <!-- <div id="preloader">
          <img class="preloader" src="images/loaders/heart-loading2.gif" alt="">
-      </div>
+      </div> -->
       <!-- END LOADER -->
       <header>
           <div class="header-top wow fadeIn">
@@ -84,28 +91,55 @@
 
       <div class="col-lg-10 col-md-8 col-sm-6 col-xs-12" style="margin-top: 15%; margin-left: 9%;">
                   <div class="appointment-form">
-                     <h3><span>+</span> Available Vaccines </h3>
+                     <h3><span>+</span> Appointment Status</h3>
                      <div class="form">
                         <table class="table mt-2">
                           <tr>
-                             <th scope="col">Vaccination ID</th>
-                             <th scope="col">Vaccine Name</th>                             
-                             <th scope="col">Patient Full Name</th>                             
-                             <th scope="col">Health Care</th>
-                             <th scope="col">ICP Pasport</th>
+                             <th scope="col">Vaccination ID</th>                             
                              <th scope="col">Date Requested</th>
-                             <th scope="col">Status</th>                             
+                             <th scope="col">Remarks</th>                             
+                             <th scope="col">Batch Number</th>  
+                             <th scope="col">Status</th>  
                           </tr>
 
-                          <tr>
-                             <td scope="col">1</td>
-                             <td scope="col">Pfizer</td>                             
-                             <td scope="col">Yoga Era Subakti</td>
-                             <td scope="col">Kasih Ibu Hospital</td> 
-                             <td scope="col">280051</td> 
-                             <td scope="col">27-12-2021</td>                             
-                             <td scope="col" class="bg-success">Confirmed</td>
-                          </tr> 
+                        
+                          <?php 
+                              $sql = "SELECT * FROM vaccination WHERE patientName = '$name'";
+                              $query = mysqli_query($connect, $sql);
+
+                              $empty = true;
+
+                              if($query){  
+                                $empty = false;                              
+                                while($row = mysqli_fetch_assoc($query)){
+                                  echo "<tr>";
+                                  echo "  
+                                  <td scope='col'>".$row['vaccinationID']."</td>    
+                                  <td scope='col'>".$row['appointmentDate']."</td>
+                                  <td scope='col'>".$row['remarks']."</td>    
+                                  <td scope='col'>".$row['batchNo']."</td>";
+
+                                  if ($row['status'] == 'Confirmed.') {
+                                    echo "<td scope='col' class ='bg-success'>".$row['status']."</td>";
+                                  }
+
+                                  else if ($row['status'] == 'Waiting for Confirmation ✅') {
+                                    echo "<td scope='col' class ='bg-warning'>".$row['status']."</td>";
+                                  }
+
+                                  else if ($row['status'] == 'Rejected.'){
+                                    echo "<td scope='col' class ='bg-danger'>".$row['status']."</td>";
+                                  }
+                                  echo " </tr>";
+                                }
+                              }
+
+                              else{
+                                 $empty = true;
+                                 echo "<td colspan='5'><h2 class='card-text'>No appointment made.</h2></td>";                                  
+                              }
+                           ?>                          
+                         
                         </table>
                      </div>
                   </div>

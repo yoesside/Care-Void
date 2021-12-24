@@ -124,7 +124,7 @@
                      <input type="number" name="administered" placeholder="How many administered?" value="275">
                   </div>             
 
-             </div>      
+             </div>            
 
              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="row">
@@ -156,7 +156,7 @@
            $newVal = $available - $administered;
            
            if ($insert) {
-                $updatesql = "UPDATE batch SET quantityAvailable = '$newVal'";
+                $updatesql = "UPDATE batch SET quantityAvailable = '$newVal' WHERE vaccineID = '$id'";
                 $update = mysqli_query($connect,$updatesql);
                 echo "
                   <script type='text/javascript'>

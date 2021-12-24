@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2021 at 09:48 AM
+-- Generation Time: Dec 24, 2021 at 03:28 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -67,14 +67,12 @@ CREATE TABLE `batch` (
 --
 
 INSERT INTO `batch` (`batchNo`, `expireDate`, `quantityAvailable`, `quantityAdministered`, `vaccineID`, `centreName`) VALUES
-(3, '2021-12-23', 225, 275, 1, 'Sanglah'),
-(8, '21-01-2022', 225, 225, 3, 'Prima'),
-(9, '12-01-2022', 225, 225, 2, 'Surya'),
-(10, '23-02-2022', 225, 225, 1, 'Sanglah'),
-(11, '2022-02-02', 225, 275, 3, 'Sanglah'),
-(12, '2021-12-06', 225, 275, 2, 'Sanglah'),
-(13, '2021-12-26', 225, 20, 3, 'Bross'),
-(14, '2021-12-23', 225, 275, 2, 'Sanglah');
+(18, '2021-12-23', 400, 352, 2, 'Sanglah'),
+(20, '2021-12-31', 225, 456, 3, 'Surya'),
+(21, '2021-12-20', 400, 200, 2, 'Sanglah'),
+(23, '21-01-2022', 500, 225, 2, 'Bross '),
+(24, '23-02-2022', 225, 225, 3, 'Prima'),
+(26, '2021-12-12', 225, 275, 3, 'Sanglah');
 
 -- --------------------------------------------------------
 
@@ -95,7 +93,8 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`icpassport`, `username`, `fullname`, `email`, `password`) VALUES
-(1, 'Win', 'Win-Kun', 'win@isekai', '1');
+(1, 'Win', 'Win-Kun', 'win@isekai', '1'),
+(5, 'some', 'some', 'some@m', '2');
 
 -- --------------------------------------------------------
 
@@ -108,8 +107,17 @@ CREATE TABLE `vaccination` (
   `appointmentDate` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL,
   `remarks` varchar(50) NOT NULL,
-  `batchNo` int(50) NOT NULL
+  `batchNo` int(50) NOT NULL,
+  `patientName` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vaccination`
+--
+
+INSERT INTO `vaccination` (`vaccinationID`, `appointmentDate`, `status`, `remarks`, `batchNo`, `patientName`) VALUES
+(26, '2021-12-11', 'Rejected.', 'request', 18, 'some'),
+(27, '2021-12-14', 'Confirmed.', 'ijininin dong', 21, 'some');
 
 -- --------------------------------------------------------
 
@@ -174,25 +182,25 @@ ALTER TABLE `vaccines`
 -- AUTO_INCREMENT for table `administrator`
 --
 ALTER TABLE `administrator`
-  MODIFY `staffID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `staffID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `batch`
 --
 ALTER TABLE `batch`
-  MODIFY `batchNo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `batchNo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `icpassport` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `icpassport` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `vaccination`
 --
 ALTER TABLE `vaccination`
-  MODIFY `vaccinationID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `vaccinationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `vaccines`

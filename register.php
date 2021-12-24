@@ -108,9 +108,9 @@ session_start();
     									$sql = "INSERT INTO patient VALUES('', '$uname','$fname', '$email','$password')";
     									$insert = mysqli_query($connect, $sql);
 
-    									/*echo "<script type='text/javascript'>
+    									echo "<script type='text/javascript'>
     										window.location.href = 'login.php'
-    									</script>";*/
+    									</script>";
     								}
 
     								?>
